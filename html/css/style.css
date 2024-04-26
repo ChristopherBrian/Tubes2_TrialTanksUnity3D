@@ -1,10 +1,73 @@
-body{
+/* style.css */
+
+body {
+    font-family:Georgia, 'Times New Roman', monospace;
+    background-image: url('https://preview.redd.it/vc3mwu18h8151.png?auto=webp&s=fb725e4815e69323e799603fc9524ef6077d1816');
+    background-size: cover;
+    background-position: auto;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
     text-align: center;
-    background-color: blanchedalmond;
+    color: #88cbc6;
 }
 
-.firstParagraph{
-    font-size: 18px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+.firstParagraph {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family:monospace;
+    color:antiquewhite;
 }
 
+.mainprogram {
+    width: 50%;
+    margin: 0 auto;
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: aliceblue;
+}
+h2 {
+    text-align: center;
+    font-family: monospace;
+    color:antiquewhite;
+    
+}
+label {
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #035AA6;
+    border-radius: 6px;
+    color: #000000;
+    
+}
+
+input[type="submit"],
+input[type="reset"] {
+    padding: 10px 20px;
+    background-color: #01796F;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    background-color: #01796F;
+}
+
+.option {
+    text-align: center;
+}
