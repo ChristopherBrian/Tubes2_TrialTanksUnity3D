@@ -59,12 +59,12 @@ func processor(w http.ResponseWriter, r *http.Request){
 	})
 
 	st.Limit(&colly.LimitRule{
-		DomainGlob: "*",
+		DomainGlob: endpoint,
 		RandomDelay: 1 * time.Second,
 	})
 
 	ed.Limit(&colly.LimitRule{
-		DomainGlob: "*",
+		DomainGlob: startpoint,
 		RandomDelay: 1 * time.Second,
 	})
 
