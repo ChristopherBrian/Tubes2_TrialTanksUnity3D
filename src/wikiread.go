@@ -21,8 +21,8 @@ func processor(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
-	startpoint := r.FormValue("start")
-	endpoint := r.FormValue("end")
+	startpoint := r.FormValue("fstart")
+	endpoint := r.FormValue("fend")
 }
 
 func main(){
