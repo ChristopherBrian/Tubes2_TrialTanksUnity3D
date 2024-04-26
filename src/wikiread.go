@@ -31,8 +31,8 @@ func processor(w http.ResponseWriter, r *http.Request){
 	webstartpoint := "wikipedia.org/" + startpoint
 	webendpoint := "wikipedia.org/" + endpoint
 
-	st := colly.NewCollector(colly.AllowedDomains(webstartpoint))
-	ed := colly.NewCollector(colly.AllowedDomains(webendpoint))
+	st := colly.NewCollector(colly.AllowedDomains("wikipedia.org"))
+	ed := colly.NewCollector(colly.AllowedDomains("wikipedia.org"))
 
 	st.OnHTML("article", func(h *colly.HTMLElement) {
 		metaTags := h.DOM.ParentsUntil("~").Find("meta")
