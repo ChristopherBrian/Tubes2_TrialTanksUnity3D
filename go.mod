@@ -1,4 +1,4 @@
-module ChristopherBrian/Tubes2_TrialTanksUnity3D
+module github.com/ChristopherBrian/Tubes2_TrialTanksUnity3D
 
 go 1.22.2
 
