@@ -25,7 +25,7 @@ func main(){
 	http.HandleFunc("/",func (w http.ResponseWriter, r *http.Request){
 		temp.ExecuteTemplate(w, "mainpage.html",nil)
 	})
-	http.HandleFunc("/process",func(w http.ResponseWriter, r *http.Request){
+	http.HandleFunc("/submit",func(w http.ResponseWriter, r *http.Request){
 		if r.Method != "Post"{
 			http.Redirect(w,r,"/",http.StatusSeeOther)
 			return
