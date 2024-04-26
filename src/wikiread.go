@@ -9,6 +9,10 @@ import (
 	"github.com/gocolly/colly"
 )
 
+type listLink struct{
+	Link string
+}
+
 var temp *template.Template
 
 func init(){
@@ -31,13 +35,18 @@ func processor(w http.ResponseWriter, r *http.Request){
 	webstartpoint := "wikipedia.org/" + startpoint
 	webendpoint := "wikipedia.org/" + endpoint
 
+	listOfLink := []listLink{}
+
 	st := colly.NewCollector(colly.AllowedDomains("wikipedia.org"))
 	ed := colly.NewCollector(colly.AllowedDomains("wikipedia.org"))
 
 	st.OnHTML("article", func(h *colly.HTMLElement) {
 		metaTags := h.DOM.ParentsUntil("~").Find("meta")
 		metaTags.Each(func(_ int, s *goquery.Selection) {
-
+			x := listLink{
+				Link: h.ChildAttr("a","href"),
+			}
+			listOfLink = append(listOfLink, x)
 		})
 	})
 
