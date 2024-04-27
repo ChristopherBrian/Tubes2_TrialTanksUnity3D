@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"net/http"
 	"time"
+	"fmt"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gocolly/colly"
@@ -81,6 +82,19 @@ func main() {
 
 		st.Visit(webstartpoint)
 		ed.Visit(webendpoint)
+		// Define the source and target page names
+		sourcePage := startpoint
+		targetPage := endpoint
+	   
+		// Call the breadth-first search algorithm to find the shortest paths
+		paths := BFS(sourcePage,targetPage)
+	   
+		// Print the resulting paths
+		fmt.Println("Shortest paths:")
+		for _, path := range paths {
+			fmt.Println(path)
+		}
+	   
 	})
 	http.ListenAndServe(":9999", nil)
 }
