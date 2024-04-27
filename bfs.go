@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
+
 )
 
 func fetch(page string) ([]string, error) {
@@ -191,18 +192,3 @@ func containsPath(paths [][]string, path []string) bool {
 	}
 	return false
 }
-
-// func test() {
-// 	// Define the source and target page names
-// 	sourcePage := "Apple"
-// 	targetPage := "Red"
-
-// 	// Call the breadth-first search algorithm to find the shortest paths
-// 	paths := BFS(sourcePage, targetPage)
-
-// 	// Print the resulting paths
-// 	fmt.Println("Shortest paths:")
-// 	for _, path := range paths {
-// 		fmt.Println(path)
-// 	}
-// }
