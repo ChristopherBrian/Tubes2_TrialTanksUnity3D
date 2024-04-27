@@ -29,8 +29,8 @@ func fetch(page string) ([]string, error) {
 	var links []string
 	doc.Find("a[href]").Each(func(_ int, s *goquery.Selection) {
 		link, exists := s.Attr("href")
-		if exists && strings.HasPrefix(link, "/wiki/") {
-			if !strings.Contains(link,":") && !strings.Contains(link,"#") && !strings.Contains(link, "{") && !strings.Contains(link,"Main_Page"){
+		if exists && link != "" && strings.HasPrefix(link, "/wiki/") {
+			if !strings.Contains(link,":") && !strings.Contains(link,"#") && !strings.Contains(link, "{") && !strings.Contains(link,"Main_Page") && !strings.Contains(link,"/File:") && !strings.Contains(link,"/Special") && !strings.Contains(link,"/Template") && !strings.Contains(link,"/Template_page:") && !strings.Contains(link,"/Help:") && !strings.Contains(link, "/Category:") && !strings.Contains(link, "Special:") && !strings.Contains(link, "/Wikipedia:") && !strings.Contains(link, "/Portal:") && !strings.Contains(link, "/Talk:") && !strings.Contains(link,"_(identifier)"){
 				links = append(links, strings.TrimPrefix(link, "/wiki/"))
 			}
 		}
