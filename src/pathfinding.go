@@ -182,40 +182,52 @@ func BFS(source, target string) [][]string {
 	return paths
 }
 
-// IDS function implements Iterative Deepening Search
+// Fungsi untuk melakukan Iterative Deepening Search
+// Depth dibatasi sampai 10 degree
 func IDS(source, target string) []string {
+	// Iterasi untuk setiap depth
 	for depth := 1; depth <= 10; depth++ {
 		visited := make(map[string]bool)
 		path := make([]string, 0)
+		// Cari path ke target page
 		found := DLS(source, target, depth, visited, &path)
+		// Jika path valid ditemukan
 		if found {
 			return path
 		}
 	}
+	// Jika tidak
 	return nil
 }
 
-// DLS function implements Depth-Limited Search
-func DLS(node, target string, depth int, visited map[string]bool, path *[]string) bool {
-	if depth == 0 && node != target {
+// Fungsi untuk melakukan Depth Limited Search di setiap iterasi IDS
+func DLS(page, target string, depth int, visited map[string]bool, path *[]string) bool {
+	// Jika limit depth dicapai dan page yang sedang dicek bukan page target, kembalikan false
+	if depth == 0 && page != target {
 		return false
 	}
-	if node == target {
-		*path = append(*path, node)
+	// Jika page yang sedang dicek merupakan page target, tambahkan dalam path, kembalikan true
+	if page == target {
+		*path = append(*path, page)
 		return true
 	}
-	if _, ok := visited[node]; ok {
+	// Jika page yang sedang dicek sudah dikunjungi, kembalikan false
+	if _, ok := visited[page]; ok {
 		return false
 	}
-	visited[node] = true
-	links, err := getLink(node)
-	if err != nil {
-		log.Printf("error fetching links for %s: %v", node, err)
+	// Tandai page yang sedang dicek sebagai sudah dikunjungi, ambil page lain yang terhubung melalui link
+	visited[page] = true
+	links, error := getLink(page)
+	// Validasi
+	if error != nil {
+		log.Printf("error fetching links for %s: %v", page, error)
 		return false
 	}
+	// Pemanggilan secara rekursif setiap page yang terhubung, dengan depth dikurangi setiap iterasi
 	for _, link := range links {
+		// Jika nilai true dikembalikan, berarti page target ditemukan, tambahkan dalam path
 		if DLS(link, target, depth-1, visited, path) {
-			*path = append(*path, node)
+			*path = append(*path, page)
 			return true
 		}
 	}
