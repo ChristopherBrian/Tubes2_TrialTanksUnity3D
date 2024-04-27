@@ -1,37 +1,28 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
 	"strings"
 
-	"github.com/PuerkitoBio/goquery"
+	"github.com/gocolly/colly"
 )
 
 func fetch(page string) ([]string, error) {
-	response, error := http.Get("https://en.wikipedia.org/wiki/" + strings.ReplaceAll(page, " ", "_"))
-	if error != nil {
-		return nil, error
-	}
-	defer response.Body.Close()
-
-	if response.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("failed to fetch page: %s", response.Status)
-	}
-
-	doc, error := goquery.NewDocumentFromReader(response.Body)
-	if error != nil {
-		return nil, error
-	}
+	c := colly.NewCollector()
 
 	var links []string
-	doc.Find("a[href]").Each(func(_ int, s *goquery.Selection) {
-		link, exists := s.Attr("href")
-		if exists && strings.HasPrefix(link, "/wiki/") {
+
+	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
+		link := e.Attr("href")
+		if strings.HasPrefix(link, "/wiki/") {
 			links = append(links, strings.TrimPrefix(link, "/wiki/"))
 		}
 	})
+
+	err := c.Visit("https://en.wikipedia.org/wiki/" + strings.ReplaceAll(page, " ", "_"))
+	if err != nil {
+		return nil, err
+	}
 
 	return links, nil
 }
