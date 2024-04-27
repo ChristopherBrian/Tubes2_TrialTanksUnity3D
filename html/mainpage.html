@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<link rel ="stylesheet" href="css/style.css">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wikiread - Tugas Besar 2 Stima</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>WIKIREAD</h1><p></p>
+    <h1>WIKIREAD</h1>
     <div class="firstParagraph">
-       <h2>Find the shortest paths from</h2> 
+        <h2>Find the shortest paths from</h2>
     </div>
     <div class="mainprogram">
         <form action="/submit" method="GET">
             <div class="StartPoint">
-                <label for="Start">Start Point: </label>
-                <input type="text" id="start" name="fstart">
+                <label for="start">Start Point: </label>
+                <input type="text" id="start" name="start">
             </div>
             <br>
-            <h2>to</h2> 
+            <h2>to</h2>
             <br>
             <div class="EndPoint">
-                <label for="Start">End Point: </label>
-                <input type="text" id="end" name="fend">
+                <label for="end">End Point: </label>
+                <input type="text" id="end" name="end">
             </div>
             <br>
             <br>
@@ -32,4 +35,53 @@
             <br>
         </form>
     </div>
+
+    {{if .Paths}}
+    <div id="results">
+        <h2>Shortest Paths BFS:</h2>
+        {{range .Paths}}
+        <ul>
+            {{range .}}
+            <li>{{.}}</li>
+            {{end}}
+        </ul>
+        {{end}}
+    </div>
+    {{end}}
+
+    {{if .Paths2}}
+    <div id="results2">
+        <h2>Shortest Paths IDS:</h2>
+        {{range .Paths2}}
+        <ul>
+            {{range .}}
+            <li>{{.}}</li>
+            {{end}}
+        </ul>
+        {{end}}
+    </div>
+    {{end}}
+
+    <div id="additionalInfo">
+        <h2>Additional Information:</h2>
+        {{if .TotalPagesVisited}}
+        <p>Total Pages Visited (BFS): {{.TotalPagesVisited}}</p>
+        {{end}}
+        {{if .ShortestPathDepth}}
+        <p>Shortest Path Depth (BFS): {{.ShortestPathDepth}}</p>
+        {{end}}
+        {{if .SearchTimeInSeconds}}
+        <p>Search Time (BFS) (seconds): {{.SearchTimeInSeconds}}</p>
+        {{end}}
+        {{if .TotalPagesVisited2}}
+        <p>Total Pages Visited (IDS): {{.TotalPagesVisited2}}</p>
+        {{end}}
+        {{if .ShortestPathDepth2}}
+        <p>Shortest Path Depth (IDS): {{.ShortestPathDepth2}}</p>
+        {{end}}
+        {{if .SearchTimeInSeconds2}}
+        <p>Search Time (IDS) (seconds): {{.SearchTimeInSeconds2}}</p>
+        {{end}}
+    </div>
 </body>
+</html>

@@ -1,11 +1,6 @@
-/* style.css */
-
 body {
     font-family:Georgia, 'Times New Roman', monospace;
-    background-image: url('https://preview.redd.it/vc3mwu18h8151.png?auto=webp&s=fb725e4815e69323e799603fc9524ef6077d1816');
-    background-size: cover;
-    background-position: auto;
-    background-repeat: no-repeat;
+    background-color: lightblue;
     margin: 0;
     padding: 0;
 }
@@ -32,6 +27,14 @@ h1 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: aliceblue;
 }
+
+.result {
+    color: white; /* Add this rule to change the background color of the result text */
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
 h2 {
     text-align: center;
     font-family: monospace;
@@ -71,3 +74,4 @@ input[type="reset"]:hover {
 .option {
     text-align: center;
 }
+
